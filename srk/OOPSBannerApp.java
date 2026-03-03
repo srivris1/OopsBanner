@@ -1,23 +1,35 @@
 /**
  * OOPS Banner App
  *
- * UC2: Render OOPS as Banner using '*' and spaces
+ * UC3: Render OOPS banner using String.join()
  *
  * @author Rishit
- * @version 2.0
+ * @version 3.0
  */
 package srk;
-
 public class OOPSBannerApp {
 
     public static void main(String[] args) {
 
-        System.out.println("  *****     *****     ******     ***** ");
-        System.out.println(" *     *   *     *   *      *   *     ");
-        System.out.println(" *     *   *     *   *      *   *     ");
-        System.out.println(" *     *   *     *   ******      ***** ");
-        System.out.println(" *     *   *     *   *                * ");
-        System.out.println(" *     *   *     *   *                * ");
-        System.out.println("  *****     *****    *           ***** " );
+        System.out.println(String.join(" ",
+                " ***** ", "  ***** ", "  ***** ", "  ***** "));
+
+        System.out.println(String.join(" ",
+                "*     *", " *     *", " *     *", " *      "));
+
+        System.out.println(String.join(" ",
+                "*     *", " *     *", " *     *", " *      "));
+
+        System.out.println(String.join(" ",
+                "*     *", " *     *", " *****  ", "  ***** "));
+
+        System.out.println(String.join(" ",
+                "*     *", " *     *", " *      ", "       *"));
+
+        System.out.println(String.join(" ",
+                "*     *", " *     *", " *      ", "       *"));
+
+        System.out.println(String.join(" ",
+                " ***** ", "  ***** ", " *      ", "  ***** "));
     }
 }
