@@ -1,93 +1,113 @@
-package srk;
-
-import java.util.HashMap;
-import java.util.Map;
-
 /**
  * OOPS Banner App
  *
- * UC8: Use Map for Character Patterns and Render via Function
+ * UC7: Store character pattern using Inner Static Class
  *
  * @author Rishit
- * @version 8.0
+ * @version 7.0
  */
-
-public class OOPSBannerApp {
-
-    public static void main(String[] args) {
-
-        // Build character pattern map
-        Map<Character, String[]> patternMap = buildCharacterPatternMap();
-
-        // Message to render
-        String message = "OOPS";
-
-        // Display banner
-        displayBanner(message, patternMap);
-    }
+package srk;public class OOPSBannerApp {
 
     /**
-     * Utility method to build character pattern map
-     *
-     * @return Map of character to ASCII pattern
+     * Inner Static Class to encapsulate a character
+     * and its corresponding banner pattern
      */
-    private static Map<Character, String[]> buildCharacterPatternMap() {
+    public static class CharacterPatternMap {
 
-        Map<Character, String[]> map = new HashMap<>();
+        private final char character;
+        private final String[] pattern;
 
-        map.put('O', new String[] {
-            " ***** ",
-            "*     *",
-            "*     *",
-            "*     *",
-            "*     *",
-            "*     *",
-            " ***** "
-        });
+        /**
+         * Constructor to initialize character and pattern
+         *
+         * @param character banner character
+         * @param pattern 7-line banner pattern
+         */
+        public CharacterPatternMap(char character, String[] pattern) {
+            this.character = character;
+            this.pattern = pattern;
+        }
 
-        map.put('P', new String[] {
-            " ***** ",
-            "*     *",
-            "*     *",
-            " ***** ",
-            "*      ",
-            "*      ",
-            "*      "
-        });
+        /**
+         * Getter for character
+         *
+         * @return character
+         */
+        public char getCharacter() {
+            return character;
+        }
 
-        map.put('S', new String[] {
-            " ***** ",
-            "*      ",
-            "*      ",
-            " ***** ",
-            "      *",
-            "      *",
-            " ***** "
-        });
-
-        return map;
-    }
-
-    /**
-     * Utility method to display banner message
-     *
-     * @param message Word to render
-     * @param patternMap Map containing character patterns
-     */
-    private static void displayBanner(String message, Map<Character, String[]> patternMap) {
-
-        // Banner has 7 rows
-        for (int row = 0; row < 7; row++) {
-
-            StringBuilder lineBuilder = new StringBuilder();
-
-            // Loop through each character in the message
-            for (char ch : message.toCharArray()) {
-                String[] pattern = patternMap.get(ch);
-                lineBuilder.append(pattern[row]).append(" ");
-            }
-
-            System.out.println(lineBuilder.toString());
+        /**
+         * Getter for banner pattern
+         *
+         * @return pattern array
+         */
+        public String[] getPattern() {
+            return pattern;
         }
     }
+
+    /**
+     * Utility method to get CharacterPatternMap array
+     *
+     * @return array of CharacterPatternMap objects
+     */
+    private static CharacterPatternMap[] getCharacterPatterns() {
+
+        return new CharacterPatternMap[] {
+
+            new CharacterPatternMap('O', new String[] {
+                " ***** ",
+                "*     *",
+                "*     *",
+                "*     *",
+                "*     *",
+                "*     *",
+                " ***** "
+            }),
+
+            new CharacterPatternMap('P', new String[] {
+                " ***** ",
+                "*     *",
+                "*     *",
+                " ***** ",
+                "*      ",
+                "*      ",
+                "*      "
+            }),
+
+            new CharacterPatternMap('S', new String[] {
+                " ***** ",
+                "*      ",
+                "*      ",
+                " ***** ",
+                "      *",
+                "      *",
+                " ***** "
+            })
+        };
+    }
+
+   public static void main(String[] args) {
+
+    CharacterPatternMap[] patterns = getCharacterPatterns();
+
+    CharacterPatternMap o = patterns[0]; // O
+    CharacterPatternMap p = patterns[1]; // P
+    CharacterPatternMap s = patterns[2]; // S
+
+    // Banner has 7 rows
+    for (int row = 0; row < 7; row++) {
+
+        StringBuilder lineBuilder = new StringBuilder();
+
+        // O O P S (correct order)
+        lineBuilder.append(o.getPattern()[row]).append(" ");
+        lineBuilder.append(o.getPattern()[row]).append(" ");
+        lineBuilder.append(p.getPattern()[row]).append(" ");
+        lineBuilder.append(s.getPattern()[row]);
+
+        System.out.println(lineBuilder.toString());
+    }
+}
 }
