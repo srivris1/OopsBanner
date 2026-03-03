@@ -1,33 +1,93 @@
+package srk;
+
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * OOPS Banner App
  *
- * UC5: Render OOPS banner using Inline Array Initialization
- *
- * Refactors UC4 by combining array declaration and initialization
- * with String.join() calls for improved conciseness and readability.
+ * UC8: Use Map for Character Patterns and Render via Function
  *
  * @author Rishit
- * @version 5.0
+ * @version 8.0
  */
-package srk;
+
 public class OOPSBannerApp {
 
     public static void main(String[] args) {
 
-        // Inline declaration and initialization of banner lines
-        String[] bannerLines = {
-            String.join(" ", " ***** ", "  ***** ", "  ***** ", "  ***** "),
-            String.join(" ", "*     *", " *     *", " *     *", " *      "),
-            String.join(" ", "*     *", " *     *", " *     *", " *      "),
-            String.join(" ", "*     *", " *     *", " *****  ", "  ***** "),
-            String.join(" ", "*     *", " *     *", " *      ", "       *"),
-            String.join(" ", "*     *", " *     *", " *      ", "       *"),
-            String.join(" ", " ***** ", "  ***** ", " *      ", "  ***** ")
-        };
+        // Build character pattern map
+        Map<Character, String[]> patternMap = buildCharacterPatternMap();
 
-        // Print banner using enhanced for loop
-        for (String line : bannerLines) {
-            System.out.println(line);
+        // Message to render
+        String message = "OOPS";
+
+        // Display banner
+        displayBanner(message, patternMap);
+    }
+
+    /**
+     * Utility method to build character pattern map
+     *
+     * @return Map of character to ASCII pattern
+     */
+    private static Map<Character, String[]> buildCharacterPatternMap() {
+
+        Map<Character, String[]> map = new HashMap<>();
+
+        map.put('O', new String[] {
+            " ***** ",
+            "*     *",
+            "*     *",
+            "*     *",
+            "*     *",
+            "*     *",
+            " ***** "
+        });
+
+        map.put('P', new String[] {
+            " ***** ",
+            "*     *",
+            "*     *",
+            " ***** ",
+            "*      ",
+            "*      ",
+            "*      "
+        });
+
+        map.put('S', new String[] {
+            " ***** ",
+            "*      ",
+            "*      ",
+            " ***** ",
+            "      *",
+            "      *",
+            " ***** "
+        });
+
+        return map;
+    }
+
+    /**
+     * Utility method to display banner message
+     *
+     * @param message Word to render
+     * @param patternMap Map containing character patterns
+     */
+    private static void displayBanner(String message, Map<Character, String[]> patternMap) {
+
+        // Banner has 7 rows
+        for (int row = 0; row < 7; row++) {
+
+            StringBuilder lineBuilder = new StringBuilder();
+
+            // Loop through each character in the message
+            for (char ch : message.toCharArray()) {
+                String[] pattern = patternMap.get(ch);
+                lineBuilder.append(pattern[row]).append(" ");
+            }
+
+            System.out.println(lineBuilder.toString());
         }
     }
 }
